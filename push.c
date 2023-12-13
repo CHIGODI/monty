@@ -7,9 +7,10 @@
  * Return: Void
  *
  */
-void push(stack_t **stack, unsigned int line_numberz)
+void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_item, *temp;
+	stack_t *new_item;
+	int data = atoi(arg);
 
 	new_item = malloc(sizeof(stack_t));
 	if (new_item == NULL)
@@ -18,8 +19,16 @@ void push(stack_t **stack, unsigned int line_numberz)
 		printf("\n");
 		exit(EXIT_FAILURE);
 	}
+	if (data == 0 || arg == '\0')
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number)
+	}
 	new_item->n = arg;
-	new_item->next = NULL;
+	new_item->next = *stack;
 	new_item->prev = NULL;
-	*stack = temp;
+	if (*stack != NULL)
+	{
+		(*stack)->prev = new_item;
+	}
+	*stack = new_item;
 }
