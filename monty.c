@@ -8,40 +8,52 @@
  * Return: 0 always succesfull
  *
  */
+char *arg = NULL;
 int main(int argc, char *argv[])
 {
-	stact_t *stack;
 	FILE *fp;
-	int read = 1;
-	char *command, len;
+	char *command = NULL;
+	size_t len = 0;
+	ssize_t read;
 	char *cmd;
-	instruction_t (*function);
+	void (*function)(stack_t **, unsigned int);
+	unsigned int line_number = 0;
+	stack_t *stack = NULL;
 
-	if (argc == 0 || argc > 2)
+	if (argc != 2)
 	{
-		write(2, "USAGE: monty file", 17);
+		write(2, "USAGE: monty file\n", 18);
 		exit(EXIT_FAILURE);
 	}
-	fp = open(argv[1] , O_RDONLY);
+
+	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 	{
-		write(2, "Error: Can't open file <file>", 29);
+		write(2, "Error: Can't open file\n", 23);
 		exit(EXIT_FAILURE);
 	}
-	while (read > 0)
+
+	while ((read = getline(&command, &len, fp)) != -1)
 	{
-		read = getline(&command, &len, fp);
 		line_number++;
-		cmd = strtok(command, " \t\r");
-		arg = strtok(NULL, " \t\r");
-		function = opcode_handler(cmd);
+		cmd = strtok(command, " \t\r\n");
+		if (cmd == NULL)
+		{
+			continue;
+		}
+		arg = strtok(NULL, " \t\r\n");
+		function = opcode_mapper(cmd);
 		if (function == NULL)
 		{
-			write(2, "L"line_number:unknown instruction cmd,20);
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, cmd);
+			free(command);
+			fclose(fp);
 			exit(EXIT_FAILURE);
 		}
-		function(stack, line_number);
+		function(&stack, line_number);
 	}
-	close(fp);
-	return (0);
+
+	free(command);
+	fclose(fp);
+	return 0;
 }

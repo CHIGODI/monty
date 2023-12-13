@@ -11,14 +11,10 @@ void (*opcode_mapper(const char *command))(stack_t **, unsigned int)
 	int i;
 	instruction_t array[] = {
 		{"push", push},
-		{"pull", pull},
-		{"pop", pop},
-		{"swap", swap},
-		{"pint", pint},
-		{"pall", pall}
+		{"pall", pall},
 		{"0", NULL}
 	};
-	for (i = 0; array[i] != NULL; i++)
+	for (i = 0; array[i].opcode != NULL; i++)
 	{
 		if (strcmp(array[i].opcode, command) == 0)
 		{
