@@ -8,30 +8,29 @@
  */
 void div_(stack_t **stack, unsigned int line_number)
 {
-        stack_t *top;
-        int len = 0, sec;
+        stack_t *top, *second;
+        int diff = 0;
 
-        top = *stack;
-        while (top)
+        if (*stack == NULL || (*stack)->next == NULL)
         {
-                top = top->next;
-                len++;
-        }
-        if (len < 2)
-        {
-                fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-		free_stack(stack);
+                fprintf(stderr, "L%u: can't sub, stack too short\n",
+			line_number);
+                free_stack(stack);
                 exit(EXIT_FAILURE);
         }
-	top = *stack;
+        top = *stack;
 	if (top->n == 0)
 	{
-		fprintf(stderr, "L%u: division by zero\n", line_number);
-		free_stack(stack);
+		fprintf(stderr, "L%u: division by zero",
+			line_number);
 		exit(EXIT_FAILURE);
+		free_stack(stack);
 	}
-        sec = top->next->n / top->n;
-        top->next->n = sec;
-        *stack = top->next;
+        second = (*stack)->next;
+
+        diff = ((second->n) / (top->n));
+        second->n = diff;
+        *stack = second;
+        second->prev = NULL;
         free(top);
 }
