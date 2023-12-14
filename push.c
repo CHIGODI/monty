@@ -20,7 +20,7 @@ void push(stack_t **stack, unsigned int line_number)
 	data = atoi(arg);
 	if (data == 0 && strcmp(arg, "0") != 0)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		return;
 	}
 	new_item = malloc(sizeof(stack_t));
