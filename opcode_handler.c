@@ -20,7 +20,7 @@ void (*opcode_mapper(const char *command))(stack_t **, unsigned int)
 		{"nop", nop},
 		{"sub", sub},
 		{"mod", mod},
-		{"div", div},
+		{"div", div_},
 		{"mul", mul},
 		{"0", NULL}
 	};
