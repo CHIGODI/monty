@@ -29,7 +29,7 @@ void div_(stack_t **stack, unsigned int line_number)
         second = (*stack)->next;
 
         div = ((second->n) / (top->n));
-        second->n = diff;
+        second->n = div;
         *stack = second;
         second->prev = NULL;
         free(top);
