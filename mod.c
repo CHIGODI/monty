@@ -19,6 +19,13 @@ void mod(stack_t **stack, unsigned int line_number)
                 exit(EXIT_FAILURE);
         }
         top = *stack;
+	if (top->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n",
+			line_number);
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
         second = (*stack)->next;
 
         modulo = ((second->n) % (top->n));

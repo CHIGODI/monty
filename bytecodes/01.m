@@ -1,5 +1,6 @@
-push a
-push v
+push 5
+push 2
 push 4
-push d
+push 6
+sub
 pall
