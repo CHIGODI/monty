@@ -1,5 +1,21 @@
 #include "monty.h"
 #include <ctype.h>
+
+/**
+ * rm_space - removes spaces in a line
+ * @str: pointer to a string
+ * Return: nothing
+ */
+void rm_space(char *str)
+{
+	size_t len;
+
+	for (len = 0; str[len] !+ '\0'; len++)
+		;
+	str[len - 1] = '\0';
+}
+
+
 /**
  * main - Entry point
  * @argc: argument count
