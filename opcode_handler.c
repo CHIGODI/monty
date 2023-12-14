@@ -8,18 +8,23 @@
  */
 void (*opcode_mapper(const char *command))(stack_t **, unsigned int)
 {
-	int i;
-	instruction_t array[] = {
+	int i = 0;
+	instruction_t array[20] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint",pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
 		{"0", NULL}
 	};
-	for (i = 0; array[i].opcode != NULL; i++)
+	for (; array[i].opcode != NULL; i++)
 	{
 		if (strcmp(array[i].opcode, command) == 0)
 		{
 			return (array[i].f);
 		}
 	}
-	return NULL;
+	return (NULL);
 }

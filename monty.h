@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+
+#define MAX_COMMAND_LENGTH 1024
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
