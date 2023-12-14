@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 				line_number, cmd);
 			free(command);
 			fclose(fp);
+			free_stack(&stack);
 			exit(EXIT_FAILURE);
 		}
 		function(&stack, line_number);
