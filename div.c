@@ -21,7 +21,7 @@ void div_(stack_t **stack, unsigned int line_number)
         top = *stack;
 	if (top->n == 0)
 	{
-		fprintf(stderr, "L%u: division by zero",
+		fprintf(stderr, "L%u: division by zero\n",
 			line_number);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
