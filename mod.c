@@ -8,30 +8,22 @@
  */
 void mod(stack_t **stack, unsigned int line_number)
 {
-        stack_t *top;
-        int len = 0, sec;
+        stack_t *top, *second;
+        int modulo = 0;
 
-        top = *stack;
-        while (top)
+        if (*stack == NULL || (*stack)->next == NULL)
         {
-                top = top->next;
-                len++;
-        }
-        if (len < 2)
-        {
-                fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
-		free_stack(stack);
+                fprintf(stderr, "L%u: can't mod, stack too short\n",
+                        line_number);
+                free_stack(stack);
                 exit(EXIT_FAILURE);
         }
-	top = *stack;
-	if (top->n == 0)
-	{
-		fprintf(stderr, "L%u: division by zero\n", line_number);
-		free_stack(stack);
-		exit(EXIT_FAILURE);
-	}
-        sec = top->next->n % top->n;
-        top->next->n = sec;
-        *stack = top->next;
+        top = *stack;
+        second = (*stack)->next;
+
+        modulo = ((second->n) % (top->n));
+        second->n = modulo;
+        *stack = second;
+        second->prev = NULL;
         free(top);
 }
