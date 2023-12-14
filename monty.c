@@ -56,5 +56,6 @@ int main(int argc, char *argv[])
 	}
 	free(command);
 	fclose(fp);
+	free_stack(&stack);
 	return (0);
 }
