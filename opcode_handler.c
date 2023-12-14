@@ -9,6 +9,7 @@
 void (*opcode_mapper(const char *command))(stack_t **, unsigned int)
 {
 	int i = 0;
+
 	instruction_t array[20] = {
 		{"push", push},
 		{"pall", pall},
