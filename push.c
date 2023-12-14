@@ -10,16 +10,23 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_item;
-	int data = atoi(arg);
+	int data;
 
-	if (data == 0 || arg == NULL)
+	if (arg == NULL)
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		return;
+	}
+	data = atoi(arg);
+	if (data == 0 && strcmp(arg, "0") != 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		return;
 	}
 	new_item = malloc(sizeof(stack_t));
 	if (new_item == NULL)
 	{
-		printf("\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 

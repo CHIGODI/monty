@@ -1,20 +1,4 @@
 #include "monty.h"
-#include <ctype.h>
-
-/**
- * rm_space - removes spaces in a line
- * @str: pointer to a string
- * Return: nothing
- */
-void rm_space(char *str)
-{
-	size_t len;
-
-	for (len = 0; str[len] !+ '\0'; len++)
-		;
-	str[len - 1] = '\0';
-}
-
 
 /**
  * main - Entry point
@@ -25,7 +9,7 @@ void rm_space(char *str)
  * Return: 0 always succesfull
  *
  */
-char *arg = NULL;
+char *arg;
 int main(int argc, char *argv[])
 {
 	FILE *fp = NULL;
@@ -37,13 +21,13 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		write(2, "USAGE: monty file\n", 18);
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
-	if (fp == NULL)
+	if (!fp)
 	{
-		write(2, "Error: Can't open file\n", 23);
+		fprintf(stderr, "Error: Can't open file\n");
 		exit(EXIT_FAILURE);
 	}
 	command = malloc(sizeof(char) * MAX_COMMAND_LENGTH);
@@ -52,13 +36,13 @@ int main(int argc, char *argv[])
 		fclose(fp);
 		exit(EXIT_FAILURE);
 	}
-	while (fgets(command, sizeof(command), fp) != NULL)
+	while (fgets(command, MAX_COMMAND_LENGTH, fp) != NULL)
 	{
 		line_number++;
-		cmd = strtok(command, " \t\r\n");
+		cmd = strtok(command, " \t\n");
 		if (cmd == NULL)
 			continue;
-		arg = strtok(NULL, " \t\r\n");
+		arg = strtok(NULL, " \t\n");
 		function = opcode_mapper(cmd);
 		if (function == NULL)
 		{
