@@ -1,8 +1,8 @@
 #include "monty.h"
 /**
- * push - function that inserts items in a stack
+ * _push - function that inserts items in a stack
  * @stack: stack to be used
- * @line_number: line number
+ * @data: data to be pushed
  *
  * Return: Void
  *
@@ -12,26 +12,24 @@ void _push(stack_t **stack, int data)
 	stack_t *new_item;
 
 	new_item = malloc(sizeof(stack_t));
-        if (new_item == NULL)
-        {
-                printf("\n");
-                exit(EXIT_FAILURE);
-        }
-
-        new_item->n = data;
-        new_item->next = *stack;
-        new_item->prev = NULL;
-        if (*stack != NULL)
-        {
-                (*stack)->prev = new_item;
-        }
-        *stack = new_item;
+	if (new_item == NULL)
+	{
+		printf("\n");
+		exit(EXIT_FAILURE);
+	}
+	new_item->n = data;
+	new_item->next = *stack;
+	new_item->prev = NULL;
+	if (*stack != NULL)
+	{
+		(*stack)->prev = new_item;
+	}
+	*stack = new_item;
 }
 
 /**
- * pop - function that removes top element of stack
+ * _pop - function that removes top element of stack
  * @stack: pointer to top element
- * @line_number: line of stack
  *
  * Return: void
  *
@@ -42,11 +40,11 @@ void _pop(stack_t **stack)
 	stack_t *top;
 
 	top = *stack;
-        *stack = (*stack)->next;
-        if (*stack != NULL)
-                (*stack)->prev = NULL;
+	*stack = (*stack)->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
 
-        free(top);
+	free(top);
 }
 
 /**

@@ -12,13 +12,13 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new_item;
 	int data;
 
-	if (arg == NULL)
+	if (global.arg == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		return;
 	}
-	data = atoi(arg);
-	if (data == 0 && strcmp(arg, "0") != 0)
+	data = atoi(global.arg);
+	if (data == 0 && strcmp(global.arg, "0") != 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		return;
