@@ -8,17 +8,17 @@
  */
 void mod(stack_t **stack, unsigned int line_number)
 {
-        stack_t *top, *second;
-        int modulo = 0;
+	stack_t *top, *second;
+	int modulo = 0;
 
-        if (*stack == NULL || (*stack)->next == NULL)
-        {
-                fprintf(stderr, "L%u: can't mod, stack too short\n",
-                        line_number);
-                free_stack(stack);
-                exit(EXIT_FAILURE);
-        }
-        top = *stack;
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n",
+			line_number);
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
+	top = *stack;
 	if (top->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n",
@@ -26,11 +26,10 @@ void mod(stack_t **stack, unsigned int line_number)
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-        second = (*stack)->next;
-
-        modulo = ((second->n) % (top->n));
-        second->n = modulo;
-        *stack = second;
-        second->prev = NULL;
-        free(top);
+	second = (*stack)->next;
+	modulo = ((second->n) % (top->n));
+	second->n = modulo;
+	*stack = second;
+	second->prev = NULL;
+	free(top);
 }
