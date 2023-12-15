@@ -22,22 +22,28 @@ void execute_commands(FILE *fp, stack_t **stack)
 	}
 	while (fgets(command, MAX_COMMAND_LENGTH, fp) != NULL)
 	{
-		line_number++;
-		cmd = strtok(command, " \t\n");
-		if (cmd == NULL)
-			continue;
-		global.arg = strtok(NULL, " \t\n");
-		function = opcode_mapper(cmd);
-		if (function == NULL)
+		if (command[0] != '#')
 		{
-			fprintf(stderr, "L%u: unknown instruction %s\n",
-				line_number, cmd);
-			free(command);
-			fclose(fp);
-			free_stack(stack);
-			exit(EXIT_FAILURE);
+			cmd = strtok(command, " \t\n");
+			if (cmd != NULL)
+			{
+				global.arg = strtok(NULL, " \t\n");
+				function = opcode_mapper(cmd);
+			}
+			if (function == NULL)
+			{
+				fprintf(stderr, "L%u: unknown instruction %s\n",
+					line_number, cmd);
+				free(command);
+				fclose(fp);
+				free_stack(stack);
+				exit(EXIT_FAILURE);
+			}
+			function(stack, line_number);
+			line_number++;
 		}
-		function(stack, line_number);
+		else
+			line_number++;
 	}
 	free(command);
 }
