@@ -7,6 +7,10 @@
  */
 int vld_num(const char *str)
 {
+	if (*str == '-')
+	{
+		str++;
+	}
 	while (*str)
 	{
 		if (!isdigit(*str))
@@ -29,26 +33,15 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_item;
 	int data;
-	int check = vld_num(global.arg);
 
-	if (global.arg == NULL)
+	if (global.arg == NULL || !vld_num(global.arg))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(global.command);
 		fclose(global.fp);
 		exit(EXIT_FAILURE);
 	}
-	if (check == 1)
-		data = atoi(global.arg);
-	else
-		data = 0;
-	if (data == 0)
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free(global.command);
-		fclose(global.fp);
-		exit(EXIT_FAILURE);
-	}
+	data = atoi(global.arg);
 	new_item = malloc(sizeof(stack_t));
 	if (new_item == NULL)
 	{
