@@ -23,6 +23,7 @@ void (*opcode_mapper(const char *command))(stack_t **, unsigned int)
 		{"div", _div},
 		{"mul", mul},
 		{"pchar", pchar},
+		{"pstr", pstr},
 		{"0", NULL}
 	};
 	for (; array[i].opcode != NULL; i++)
