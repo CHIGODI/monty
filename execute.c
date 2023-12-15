@@ -1,13 +1,13 @@
 #include "monty.h"
 /**
  * execute_commands - executes
- * @fp: file pointer
+ * @global.fp: file pointer
  * @stack: pointer to top of stack
  *
  * Return: nothing!
  *
  */
-void execute_commands(FILE *fp, stack_t **stack)
+void execute_commands(stack_t **stack)
 {
 	void (*function)(stack_t **, unsigned int) = NULL;
 	char *cmd = NULL;
@@ -16,10 +16,10 @@ void execute_commands(FILE *fp, stack_t **stack)
 	global.command = malloc(sizeof(char) * MAX_COMMAND_LENGTH);
 	if (global.command == NULL)
 	{
-		fclose(fp);
+		fclose(global.fp);
 		exit(EXIT_FAILURE);
 	}
-	while (fgets(global.command, MAX_COMMAND_LENGTH, fp) != NULL)
+	while (fgets(global.command, MAX_COMMAND_LENGTH, global.fp) != NULL)
 	{
 		if (global.command[0] != '#')
 		{
@@ -33,7 +33,7 @@ void execute_commands(FILE *fp, stack_t **stack)
 					fprintf(stderr, "L%u: unknown instruction %s\n"
 						, line_number, cmd);
 					free(global.command);
-					fclose(fp);
+					fclose(global.fp);
 					free_stack(stack);
 					exit(EXIT_FAILURE);
 				}
@@ -45,5 +45,4 @@ void execute_commands(FILE *fp, stack_t **stack)
 			line_number++;
 	}
 	free(global.command);
-	free_stack(stack);
 }

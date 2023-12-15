@@ -16,6 +16,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(global.command);
+		fclose(global.fp);
 		exit(EXIT_FAILURE);
 	}
 	data = atoi(global.arg);
@@ -23,7 +24,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(global.command);
-		free_stack(stack);
+		fclose(global.fp);
 		exit(EXIT_FAILURE);
 	}
 	new_item = malloc(sizeof(stack_t));

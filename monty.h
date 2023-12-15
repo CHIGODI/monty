@@ -12,12 +12,14 @@
  * struct Global - global variable
  * @arg: argument to opcode
  * @command: command to opcode
+ * @fp: file pointer to opcode file
  *
  */
 typedef struct Global
 {
 	char *arg;
 	char *command;
+	FILE *fp;
 } global_var;
 
 extern global_var global;
@@ -56,7 +58,7 @@ void mul(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t **stack);
-void execute_commands(FILE *fp, stack_t **stack);
+void execute_commands(stack_t **stack);
 void pchar(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);

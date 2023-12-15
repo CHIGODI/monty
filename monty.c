@@ -11,7 +11,6 @@
 int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
-	FILE *fp = NULL;
 
 	if (argc != 2)
 	{
@@ -19,15 +18,15 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	fp = fopen(argv[1], "r");
-	if (!fp)
+	global.fp = fopen(argv[1], "r");
+	if (!global.fp)
 	{
 		fprintf(stderr, "Error: Can't open file\n");
 		exit(EXIT_FAILURE);
 	}
-	execute_commands(fp, &stack);
+	execute_commands(&stack);
 
-	fclose(fp);
+	fclose(global.fp);
 	free_stack(&stack);
 	return (0);
 }
