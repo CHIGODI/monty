@@ -1,6 +1,10 @@
 #include "monty.h"
 #include <ctype.h>
-
+/**
+ * vld_num - Checks if the argument is a number
+ * @str: the argiment string
+ * Return: 1 if its an integer; 0 if its not
+ */
 int vld_num(const char *str)
 {
 	while (*str)
