@@ -38,7 +38,7 @@ void push(stack_t **stack, unsigned int line_number)
 		data = atoi(global.arg);
 	else
 		data = 0;
-	if (data == 0 && strcmp(global.arg, "0") != 0)
+	if (data == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(global.command);
