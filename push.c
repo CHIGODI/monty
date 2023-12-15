@@ -21,7 +21,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (data == 0 && strcmp(global.arg, "0") != 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		return;
+		exit(EXIT_FAILURE);
 	}
 	new_item = malloc(sizeof(stack_t));
 	if (new_item == NULL)
