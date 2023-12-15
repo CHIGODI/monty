@@ -64,6 +64,8 @@ void add(stack_t **stack, unsigned int line_number)
 	{
 		printf("L%d: can't add, stack too short"
 		       , line_number);
+		free(global.command);
+		fclose(global.fp);
 		exit(EXIT_FAILURE);
 	}
 

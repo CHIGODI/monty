@@ -16,6 +16,8 @@ void mod(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: can't mod, stack too short\n"
 			, line_number);
 		free_stack(stack);
+		free(global.command);
+		fclose(global.fp);
 		exit(EXIT_FAILURE);
 	}
 	top = *stack;
@@ -24,6 +26,8 @@ void mod(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: division by zero\n"
 			, line_number);
 		free_stack(stack);
+		free(global.command);
+		fclose(global.fp);
 		exit(EXIT_FAILURE);
 	}
 	second = (*stack)->next;
