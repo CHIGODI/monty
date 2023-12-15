@@ -17,8 +17,8 @@ void pstr(stack_t **stack, unsigned int line_number)
 		{
 			break;
 		}
-		fprintf("%c", top->n);
+		fprintf(stdout, "%c", top->n);
 		top = top->next;
 	}
-	fprintf("\n");
+	fprintf(stdout, "\n");
 }
