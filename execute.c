@@ -39,8 +39,8 @@ void execute_commands(FILE *fp, stack_t **stack)
 					exit(EXIT_FAILURE);
 				}
 				function(stack, line_number);
-				line_number++;
 			}
+			line_number++;
 		}
 		else
 			line_number++;
