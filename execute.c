@@ -35,6 +35,7 @@ void execute_commands(FILE *fp, stack_t **stack)
 						, line_number, cmd);
 					free(command);
 					fclose(fp);
+					free_stack(stack);
 					exit(EXIT_FAILURE);
 				}
 				function(stack, line_number);
