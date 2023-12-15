@@ -28,6 +28,5 @@ int main(int argc, char **argv)
 	execute_commands(fp, &stack);
 
 	fclose(fp);
-	free_stack(&stack);
 	return (0);
 }
