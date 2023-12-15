@@ -24,10 +24,11 @@ void swap(stack_t **stack, unsigned int line_number)
 	second = (*stack)->next;
 
 	top->next = second->next;
-	top->prev = second;
 	if (second->next != NULL)
 		second->next->prev = top;
 
 	second->prev = NULL;
+	second->next = top;
+	top->prev = second;
 	*stack = second;
 }
