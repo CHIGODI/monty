@@ -7,7 +7,6 @@
  * Return: nothing!
  *
  */
-char *arg;
 void execute_commands(FILE *fp, stack_t **stack)
 {
 	void (*function)(stack_t **, unsigned int) = NULL;
@@ -27,7 +26,7 @@ void execute_commands(FILE *fp, stack_t **stack)
 		cmd = strtok(command, " \t\n");
 		if (cmd == NULL)
 			continue;
-		arg = strtok(NULL, " \t\n");
+		global.arg = strtok(NULL, " \t\n");
 		function = opcode_mapper(cmd);
 		if (function == NULL)
 		{

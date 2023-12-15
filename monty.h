@@ -6,8 +6,15 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
-
 #define MAX_COMMAND_LENGTH 1024
+
+typedef struct Global
+{
+	char *arg;
+}global_var;
+
+extern global_var global;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,7 +44,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern char *arg;
 void sub(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void div_(stack_t **stack, unsigned int line_number);
