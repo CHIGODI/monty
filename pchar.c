@@ -16,7 +16,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	if (top->n > 127 || top->n <0)
+	if (top->n > 127 || top->n < 0)
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 		free_stack(stack);
