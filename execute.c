@@ -46,4 +46,5 @@ void execute_commands(FILE *fp, stack_t **stack)
 			line_number++;
 	}
 	free(command);
+	free_stack(stack);
 }
