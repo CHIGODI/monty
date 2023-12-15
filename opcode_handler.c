@@ -13,14 +13,14 @@ void (*opcode_mapper(const char *command))(stack_t **, unsigned int)
 	instruction_t array[20] = {
 		{"push", push},
 		{"pall", pall},
-		{"pint",pint},
+		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
 		{"mod", mod},
-		{"div", div_},
+		{"div", _div},
 		{"mul", mul},
 		{"0", NULL}
 	};

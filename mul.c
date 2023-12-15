@@ -8,22 +8,22 @@
  */
 void mul(stack_t **stack, unsigned int line_number)
 {
-        stack_t *top, *second;
-        int prdct = 0;
+	stack_t *top, *second;
+	int prdct = 0;
 
-        if (*stack == NULL || (*stack)->next == NULL)
-        {
-                fprintf(stderr, "L%u: can't mul, stack too short\n",
-                        line_number);
-                free_stack(stack);
-                exit(EXIT_FAILURE);
-        }
-        top = *stack;
-        second = (*stack)->next;
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n"
+			, line_number);
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
+	top = *stack;
+	second = (*stack)->next;
 
-        prdct = ((second->n) * (top->n));
-        second->n = prdct;
-        *stack = second;
-        second->prev = NULL;
-        free(top);
+	prdct = ((second->n) * (top->n));
+	second->n = prdct;
+	*stack = second;
+	second->prev = NULL;
+	free(top);
 }

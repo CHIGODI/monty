@@ -8,10 +8,15 @@
 #include <fcntl.h>
 #define MAX_COMMAND_LENGTH 1024
 
+/**
+ * struct Global - global variable
+ * @arg: argument to opcode
+ *
+ */
 typedef struct Global
 {
 	char *arg;
-}global_var;
+} global_var;
 
 extern global_var global;
 
@@ -46,7 +51,7 @@ typedef struct instruction_s
 
 void sub(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
-void div_(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t **stack);
 void execute_commands(FILE *fp, stack_t **stack);
