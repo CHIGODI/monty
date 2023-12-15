@@ -15,21 +15,20 @@ void push(stack_t **stack, unsigned int line_number)
 	if (global.arg == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free(global.command);
-		exit(EXIT_FAILURE);
+		return;
 	}
 	data = atoi(global.arg);
 	if (data == 0 && strcmp(global.arg, "0") != 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free(global.command);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 	new_item = malloc(sizeof(stack_t));
 	if (new_item == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free(global.command);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 
