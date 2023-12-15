@@ -14,10 +14,8 @@ void pall(stack_t **stack, unsigned int line_number)
 	(void) line_number;
 
 	if (*stack == NULL)
-	{
-		free(global.command);
-		exit(EXIT_FAILURE);
-	}
+		return;
+
 	top = *stack;
 	while (top != NULL)
 	{
