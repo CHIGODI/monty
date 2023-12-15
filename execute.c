@@ -11,7 +11,7 @@ void execute_commands(stack_t **stack)
 {
 	void (*function)(stack_t **, unsigned int) = NULL;
 	char *cmd = NULL;
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 
 	global.command = malloc(sizeof(char) * MAX_COMMAND_LENGTH);
 	if (global.command == NULL)
@@ -23,6 +23,7 @@ void execute_commands(stack_t **stack)
 	{
 		if (global.command[0] != '#')
 		{
+			line_number++;
 			cmd = strtok(global.command, " \t\n");
 			if (cmd != NULL)
 			{
@@ -39,7 +40,6 @@ void execute_commands(stack_t **stack)
 				}
 				function(stack, line_number);
 			}
-			line_number++;
 		}
 		else
 			line_number++;
