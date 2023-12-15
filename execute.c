@@ -11,7 +11,7 @@ void execute_commands(stack_t **stack)
 {
 	void (*function)(stack_t **, unsigned int) = NULL;
 	char *cmd = NULL;
-	unsigned int line_number = 0;
+	unsigned int line_number = 1;
 
 	global.command = malloc(sizeof(char) * MAX_COMMAND_LENGTH);
 	if (global.command == NULL)
