@@ -31,11 +31,10 @@ void execute_commands(FILE *fp, stack_t **stack)
 				function = opcode_mapper(cmd);
 				if (function == NULL)
 				{
-					fprintf(stderr, "L%u: unknown instruction %s\n",
-						line_number, cmd);
+					fprintf(stderr, "L%u: unknown instruction %s\n"
+						, line_number, cmd);
 					free(command);
 					fclose(fp);
-					free_stack(stack);
 					exit(EXIT_FAILURE);
 				}
 				function(stack, line_number);
