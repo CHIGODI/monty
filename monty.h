@@ -11,11 +11,13 @@
 /**
  * struct Global - global variable
  * @arg: argument to opcode
+ * @command: command to opcode
  *
  */
 typedef struct Global
 {
 	char *arg;
+	char *command;
 } global_var;
 
 extern global_var global;

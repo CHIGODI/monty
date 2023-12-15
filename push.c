@@ -15,12 +15,14 @@ void push(stack_t **stack, unsigned int line_number)
 	if (global.arg == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		return;
+		free(global.command);
+		exit(EXIT_FAILURE);
 	}
 	data = atoi(global.arg);
 	if (data == 0 && strcmp(global.arg, "0") != 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		free(global.command);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
